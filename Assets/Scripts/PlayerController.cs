@@ -17,10 +17,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Movement();
-        //Rotation();
-        //transform.forward += _lookDirection;
     }
 
+    // 8 ordinal directions
+    // rotation only while inputting
     private void Movement()
     {
         Vector3 direction = new Vector3();
@@ -50,14 +50,15 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.velocity = direction.normalized * _moveSpeed;
+
         if (direction == Vector3.zero)
         {
             return;
         }
         _lookDirection = direction;
-        Debug.Log(direction);
     }
 
+    // gradual rotation lerp
     private void Rotation()
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_lookDirection), _rotateSpeed);
