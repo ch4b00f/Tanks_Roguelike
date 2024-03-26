@@ -10,6 +10,11 @@ public class Bullet : MonoBehaviour
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = transform.up * _bulletSpeed;
+        rb.velocity = transform.forward * _bulletSpeed;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        gameObject.SetActive(false);
     }
 }
