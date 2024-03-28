@@ -1,3 +1,4 @@
+using System.Net;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -28,28 +29,41 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             direction += new Vector3(0, 0, 1);
-            Rotation();
+            if (direction != transform.forward)
+            {
+                Rotation();
+            }
         }
 
         if (Input.GetKey(KeyCode.S))
         {
             direction += new Vector3(0, 0, -1);
-            Rotation();
+            if (direction != transform.forward)
+            {
+                Rotation();
+            }
         }
 
         if (Input.GetKey(KeyCode.A))
         {
             direction += new Vector3(-1, 0, 0);
-            Rotation();
+            if (direction != transform.forward)
+            {
+                Rotation();
+            }
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             direction += new Vector3(1, 0, 0);
-            Rotation();
+            if(direction != transform.forward)
+            {
+                Rotation();
+            }
         }
 
-        rb.velocity = direction.normalized * _moveSpeed;
+        // make it consistent for framerates. _movespeed needs to be huge tho
+        rb.velocity = direction.normalized * _moveSpeed * Time.deltaTime;
 
         if (direction == Vector3.zero)
         {
@@ -61,6 +75,7 @@ public class PlayerController : MonoBehaviour
     // gradual rotation lerp
     private void Rotation()
     {
+        Debug.Log("rotating");
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_lookDirection), _rotateSpeed);
     }
 

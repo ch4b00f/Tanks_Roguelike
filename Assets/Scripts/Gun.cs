@@ -24,7 +24,6 @@ public class Gun : MonoBehaviour
 
     private void Shoot()
     {
-        Debug.Log("fire");
         GameObject bullet = ObjectPooling.instance.GetPooledObject();
         if(bullet != null)
         {

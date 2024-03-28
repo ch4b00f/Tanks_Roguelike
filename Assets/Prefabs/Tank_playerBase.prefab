@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 6476974160584122280}
   - component: {fileID: 7798260543221294215}
   - component: {fileID: 7432799315823048075}
+  - component: {fileID: 3924241391027605935}
   m_Layer: 0
   m_Name: Tank_playerBase
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,9 +148,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f5bfab01241824bac203135c351840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+  _moveSpeed: 1000
   _rotateSpeed: 0.1
   _acTank: {fileID: 0}
+--- !u!114 &3924241391027605935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159067454388835511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a94f6e5aeb0dad47bc0fd0bb1e9af28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  maxHealth: 1
+  currentHealth: 0
 --- !u!1001 &1588567078185902980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -159,12 +177,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 7833469358406857854}
     m_Modifications:
     - target: {fileID: 3399077089690208395, guid: 818caa1165b38584fa479afdc6d92562, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3399077089690208395, guid: 818caa1165b38584fa479afdc6d92562, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3399077089690208395, guid: 818caa1165b38584fa479afdc6d92562, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 3399077089690208395, guid: 818caa1165b38584fa479afdc6d92562, type: 3}
       propertyPath: m_LocalPosition.z

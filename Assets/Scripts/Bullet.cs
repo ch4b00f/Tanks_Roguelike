@@ -19,11 +19,27 @@ public class Bullet : MonoBehaviour
     // return to object pool on collision
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(_bounces);
+        GameObject obj = collision.gameObject;
+        string tag = obj.tag;
+        if (tag == "Player")
+        {
+            DealDamage(collision.gameObject);
+        }
+        else if(tag == "Bullet")
+        {
+            gameObject.SetActive(false);
+        }
+
         _bounces += 1;
         if(_bounces > _bounceMax)
         {
             gameObject.SetActive(false);
         }
+    }
+
+    private void DealDamage(GameObject player)
+    {
+        Health hp = player.GetComponent<Health>();
+        hp.currentHealth -= 1;
     }
 }
