@@ -21,15 +21,20 @@ public class Bullet : MonoBehaviour
     {
         GameObject obj = collision.gameObject;
         string tag = obj.tag;
+
+        // deal damage to player
         if (tag == "Player")
         {
             DealDamage(collision.gameObject);
+            gameObject.SetActive(false);
         }
+        // self destruct on other bullets
         else if(tag == "Bullet")
         {
             gameObject.SetActive(false);
         }
 
+        // bounce off walls
         _bounces += 1;
         if(_bounces > _bounceMax)
         {

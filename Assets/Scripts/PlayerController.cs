@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _moveSpeed = 1;
     [SerializeField] private float _rotateSpeed = 1;
     [SerializeField] private Animator _acTank;
+    [SerializeField] private Gun _playerGun;
     private Rigidbody rb;
     private Vector3 _lookDirection;
 
@@ -13,11 +14,23 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         _acTank = GetComponent<Animator>();
+        _playerGun = GetComponentInChildren<Gun>();
     }
 
     void Update()
     {
         Movement();
+
+        if (Input.GetMouseButtonDown(0) && _playerGun.canFire)
+        {
+            _playerGun.Shoot();
+        }
+
+        // DEBUG refill ammo
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ObjectPooling.instance.ReturnAllObjects();
+        }
     }
 
     // 8 ordinal directions
@@ -75,7 +88,6 @@ public class PlayerController : MonoBehaviour
     // gradual rotation lerp
     private void Rotation()
     {
-        Debug.Log("rotating");
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_lookDirection), _rotateSpeed);
     }
 

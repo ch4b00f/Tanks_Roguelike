@@ -6,23 +6,9 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] private Transform _muzzle;
     [SerializeField] private float _firingDelay = .2f;
-    private bool _canFire = true;
+    public bool canFire = true;
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0) && _canFire)
-        {
-            Shoot();
-        }
-
-        // DEBUG refill ammo
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ObjectPooling.instance.ReturnAllObjects();
-        }
-    }
-
-    private void Shoot()
+    public void Shoot()
     {
         GameObject bullet = ObjectPooling.instance.GetPooledObject();
         if(bullet != null)
@@ -38,8 +24,8 @@ public class Gun : MonoBehaviour
 
     private IEnumerator ShootDelay()
     {
-        _canFire= false;
+        canFire= false;
         yield return new WaitForSeconds(_firingDelay);
-        _canFire = true;
+        canFire = true;
     }
 }
